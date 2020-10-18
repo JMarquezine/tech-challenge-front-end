@@ -12,16 +12,14 @@ class App extends React.Component {
 			productionPrefix: 'bexs-front-end-exam',
 			seed: 'bexs-front-end-exam',
 		})
-
 		return (
 			<Suspense fallback={null}>
-					<CssBaseline />
-					<StylesProvider generateClassName={generateClassName}>
-						<AppRouter />
-					</StylesProvider>
+				<CssBaseline />
+				<StylesProvider generateClassName={generateClassName}>
+					<AppRouter />
+				</StylesProvider>
 			</Suspense>
 		)
 	}
 }
-
 export default App

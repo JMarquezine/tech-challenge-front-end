@@ -1,0 +1,56 @@
+{
+    "env": {
+        "browser": true,
+        "jest": true
+    },
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 2020,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react",
+        "@typescript-eslint",
+        "jest",
+        "prettier"
+    ],
+    "extends": [
+        "airbnb",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:prettier/recommended",
+        "prettier/@typescript-eslint",
+        "plugin:react/recommended",
+        "plugin:import/typescript",
+        "plugin:jest/recommended"
+    ],
+    "rules": {
+        "linebreak-style": "off",
+        "prettier/prettier": ["error"],
+        "no-debugger": "warn",
+        "camelcase": "error",
+        "import/prefer-default-export": "off",
+        "import/named": "off",
+		"import/export": "off",
+		"import/no-extraneous-dependencies": "off",
+		"import/extensions": [
+			"error",
+			"ignorePackages",
+			{
+				"js": "never",
+				"jsx": "never",
+				"ts": "never",
+				"tsx": "never"
+			}
+        ],
+        "indent": ["error", "tab"],
+        "react/jsx-indent": ["error", "tab"],
+        "react/jsx-indent-props": [2, "tab"],
+        "react/jsx-one-expression-per-line": "off",
+        "react/jsx-filename-extension": ["warn", { "extensions": [".js", ".jsx", ".tsx"] }],
+        "react/props-types": "off",
+        "react/prefer-stateless-function": "off"
+    }    
+}

@@ -1,0 +1,9 @@
+{
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+    "editor.tabSize": 2,
+	"editor.insertSpaces": false,
+    "eslint.validate": ["typescript", "typescriptreact"],
+    "typescript.updateImportsOnFileMove.enabled": "always",
+}

@@ -5,9 +5,9 @@ const AppRouter: React.FC = () => {
 	return (
 		<Router>
 			<Switch>
-				<Route path={`/`} >
-                    <div>Test</div>
-                </Route>
+				<Route path="/">
+					<div>Test</div>
+				</Route>
 			</Switch>
 		</Router>
 	)
