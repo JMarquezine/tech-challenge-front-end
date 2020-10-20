@@ -3,8 +3,10 @@ import {
 	CssBaseline,
 	StylesProvider,
 	createGenerateClassName,
+	ThemeProvider,
 } from '@material-ui/core'
 import AppRouter from './AppRouter'
+import theme from '../theme'
 
 class App extends React.Component {
 	public render(): ReactElement {
@@ -14,10 +16,12 @@ class App extends React.Component {
 		})
 		return (
 			<Suspense fallback={null}>
-				<CssBaseline />
-				<StylesProvider generateClassName={generateClassName}>
-					<AppRouter />
-				</StylesProvider>
+				<ThemeProvider theme={theme}>
+					<CssBaseline />
+					<StylesProvider generateClassName={generateClassName}>
+						<AppRouter />
+					</StylesProvider>
+				</ThemeProvider>
 			</Suspense>
 		)
 	}

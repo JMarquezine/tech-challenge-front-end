@@ -1,14 +1,25 @@
-import { Grid } from '@material-ui/core'
+import { Box, Grid, Typography } from '@material-ui/core'
 import React from 'react'
+import PaymentForm from './Components/PaymentForm'
+import PaymentPath from './Components/PaymentPath'
+import useStyle from './PaymentStyle'
 
 const Payment: React.FC = () => {
+	const classes = useStyle()
 	return (
-		<Grid container md={12}>
-			<Grid item md={3} style={{ backgroundColor: '#DE4B4B', height: '596px' }}>
-				Test
+		<Grid container item className={classes.root}>
+			<Grid item md={3} className={classes.firstGrid}>
+				<Box style={{ paddingTop: '59px' }}>
+					<Typography>&lt; Alterar forma de Pagamento</Typography>
+				</Box>
 			</Grid>
-			<Grid item md={9} style={{ backgroundColor: '#FFFFFF', height: '596px' }}>
-				Test
+			<Grid item md={9} className={classes.secondGrid}>
+				<Box className={classes.paymentForm}>
+					<PaymentPath />
+					<Box>
+						<PaymentForm />
+					</Box>
+				</Box>
 			</Grid>
 		</Grid>
 	)
