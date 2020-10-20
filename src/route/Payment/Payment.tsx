@@ -14,7 +14,7 @@ const Payment: React.FC = () => {
 				</Box>
 			</Grid>
 			<Grid item md={9} className={classes.secondGrid}>
-				<Box className={classes.paymentForm}>
+				<Box className={classes.paymentFormRoot}>
 					<PaymentPath />
 					<Box>
 						<PaymentForm />

@@ -16,7 +16,12 @@ const PaymentForm: React.FC = () => {
 	return (
 		<Grid container spacing={2}>
 			<Grid item xs={12}>
-				<TextField id="cardNumber" label="Número do Cartão" fullWidth />
+				<TextField
+					id="cardNumber"
+					type="number"
+					label="Número do Cartão"
+					fullWidth
+				/>
 			</Grid>
 			<Grid item xs={12}>
 				<TextField id="cardName" label="Nome (igual ao cartão)" fullWidth />
@@ -28,7 +33,12 @@ const PaymentForm: React.FC = () => {
 				<TextField id="cardCVV" label="CVV" fullWidth />
 			</Grid>
 			<Grid item xs={12}>
-				<TextField id="paymentRates" select fullWidth>
+				<TextField
+					id="paymentRates"
+					label="Número de Parcelas"
+					select
+					fullWidth
+				>
 					{paymentsRates.map((option) => (
 						<MenuItem key={option.value} value={option.value}>
 							{option.label}

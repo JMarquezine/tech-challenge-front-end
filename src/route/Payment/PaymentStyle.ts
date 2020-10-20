@@ -5,7 +5,7 @@ const paymentStyle = makeStyles(() =>
 		root: { height: '596px' },
 		firstGrid: { backgroundColor: '#DE4B4B' },
 		secondGrid: { backgroundColor: '#FFFFFF' },
-		paymentForm: {
+		paymentFormRoot: {
 			paddingLeft: '168px',
 			paddingRight: '64px',
 			paddingTop: '55px',
