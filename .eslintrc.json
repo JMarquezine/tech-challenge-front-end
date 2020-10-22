@@ -51,6 +51,8 @@
         "react/jsx-one-expression-per-line": "off",
         "react/jsx-filename-extension": ["warn", { "extensions": [".js", ".jsx", ".tsx"] }],
         "react/props-types": "off",
-        "react/prefer-stateless-function": "off"
+        "react/prefer-stateless-function": "off",
+        "no-shadow": "off",
+        "@typescript-eslint/no-shadow": ["error"]
     }    
 }

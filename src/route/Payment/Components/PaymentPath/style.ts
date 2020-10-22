@@ -3,7 +3,7 @@ import { createStyles, makeStyles } from '@material-ui/core/styles'
 const style = makeStyles(() =>
 	createStyles({
 		root: { color: '#DE4B4B', paddingBottom: '71px' },
-		ellipse: { top: '5px', position: 'relative' },
+		ellipse: { position: 'relative' },
 		ellipseEmpty: {
 			width: '22px',
 			height: '22px',
@@ -18,7 +18,7 @@ const style = makeStyles(() =>
 		},
 		step: {
 			right: '17px',
-			bottom: '1px',
+			bottom: '6px',
 			position: 'relative',
 		},
 	})

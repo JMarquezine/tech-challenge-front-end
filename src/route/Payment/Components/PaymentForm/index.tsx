@@ -1,47 +1,88 @@
 import { Grid, MenuItem, TextField } from '@material-ui/core'
-import React from 'react'
-
-const paymentsRates = [
-	{
-		value: '12',
-		label: '12x R$1.000,00 sem juros',
-	},
-	{
-		value: '6',
-		label: '6x R$2.000,00 sem juros',
-	},
-]
+import React, { ChangeEvent, useEffect, useState } from 'react'
+import PaymentRateType from '../../../../domains/enums/PaymentRateType'
+import Payment from '../../../../domains/Payment'
+import * as PaymentEvents from '../../../../store/payment/PaymentEvents'
 
 const PaymentForm: React.FC = () => {
+	const [payment, setPayment] = useState<Payment>({
+		cardName: '',
+		cardNumber: '',
+		cvv: '',
+		validate: '',
+	} as Payment)
+
+	const handleInputChange = (
+		event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+	) => {
+		const { id, value } = event.target
+		setPayment({
+			...payment,
+			[id]: value,
+		})
+	}
+
+	const handleSelectChange = (
+		event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+	) => {
+		const { value } = event.target
+		setPayment({ ...payment, paymentRate: value as PaymentRateType })
+	}
+
+	useEffect(() => {
+		PaymentEvents.setPayment(payment)
+	}, [payment])
+
 	return (
 		<Grid container spacing={2}>
 			<Grid item xs={12}>
 				<TextField
 					id="cardNumber"
-					type="number"
 					label="Número do Cartão"
+					value={payment.cardNumber}
 					fullWidth
+					onChange={handleInputChange}
 				/>
 			</Grid>
 			<Grid item xs={12}>
-				<TextField id="cardName" label="Nome (igual ao cartão)" fullWidth />
+				<TextField
+					id="cardName"
+					label="Nome (igual ao cartão)"
+					value={payment.cardName}
+					fullWidth
+					onChange={handleInputChange}
+				/>
 			</Grid>
 			<Grid item xs={6}>
-				<TextField id="cardValidate" label="Validade" fullWidth />
+				<TextField
+					id="validate"
+					label="Validade"
+					value={payment.validate}
+					fullWidth
+					onChange={handleInputChange}
+				/>
 			</Grid>
 			<Grid item xs={6}>
-				<TextField id="cardCVV" label="CVV" fullWidth />
+				<TextField
+					id="cvv"
+					label="CVV"
+					value={payment.validate}
+					fullWidth
+					onChange={handleInputChange}
+				/>
 			</Grid>
 			<Grid item xs={12}>
 				<TextField
-					id="paymentRates"
+					id="paymentRate"
 					label="Número de Parcelas"
+					value={payment.paymentRate}
 					select
 					fullWidth
+					onChange={handleSelectChange}
 				>
-					{paymentsRates.map((option) => (
-						<MenuItem key={option.value} value={option.value}>
-							{option.label}
+					{Object.keys(PaymentRateType).map((key) => (
+						<MenuItem key={key} value={key}>
+							{PaymentRateType[key as keyof typeof PaymentRateType]}
 						</MenuItem>
 					))}
 				</TextField>
