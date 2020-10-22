@@ -13,7 +13,7 @@ const PaymentCredit: React.FC = () => {
 			<Box className={classes.root}>
 				<Box>
 					<Typography className={classes.changePayment}>
-						<Chevron position="left" /> Alterar forma de Pagamento
+						<Chevron position="left" /> Alterar forma de pagamento
 					</Typography>
 				</Box>
 				<Box

@@ -1,5 +1,7 @@
 import { Grid, MenuItem, TextField } from '@material-ui/core'
-import React, { ChangeEvent, useEffect, useState } from 'react'
+import React, { ChangeEvent, FocusEvent, useEffect, useState } from 'react'
+import { Focused } from 'react-credit-cards'
+import ReactInputMask from 'react-input-mask'
 import PaymentRateType from '../../../../domains/enums/PaymentRateType'
 import Payment from '../../../../domains/Payment'
 import * as PaymentEvents from '../../../../store/payment/PaymentEvents'
@@ -22,6 +24,14 @@ const PaymentForm: React.FC = () => {
 		})
 	}
 
+	const handleFocus = (event: FocusEvent<HTMLInputElement>) => {
+		const { name } = event.target
+		PaymentEvents.setFocused(name as Focused)
+	}
+	const handleBlur = () => {
+		PaymentEvents.setFocused(undefined)
+	}
+
 	const handleSelectChange = (
 		event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
 	) => {
@@ -36,40 +46,76 @@ const PaymentForm: React.FC = () => {
 	return (
 		<Grid container spacing={2}>
 			<Grid item xs={12}>
-				<TextField
-					id="cardNumber"
-					label="Número do Cartão"
+				<ReactInputMask
 					value={payment.cardNumber}
-					fullWidth
+					mask="9999 9999 9999 9999"
+					maskChar=" "
+					onFocus={handleFocus}
 					onChange={handleInputChange}
-				/>
+					onBlur={handleBlur}
+				>
+					{() => (
+						<TextField
+							id="cardNumber"
+							name="number"
+							label="Número do Cartão"
+							value={payment.cardNumber}
+							fullWidth
+						/>
+					)}
+				</ReactInputMask>
 			</Grid>
 			<Grid item xs={12}>
 				<TextField
 					id="cardName"
 					label="Nome (igual ao cartão)"
+					name="name"
 					value={payment.cardName}
 					fullWidth
 					onChange={handleInputChange}
+					onFocus={handleFocus}
+					onBlur={handleBlur}
 				/>
 			</Grid>
 			<Grid item xs={6}>
-				<TextField
-					id="validate"
-					label="Validade"
+				<ReactInputMask
 					value={payment.validate}
-					fullWidth
+					mask="99/99"
+					maskChar=" "
 					onChange={handleInputChange}
-				/>
+					onFocus={handleFocus}
+					onBlur={handleBlur}
+				>
+					{() => (
+						<TextField
+							id="validate"
+							label="Validade"
+							name="expiry"
+							value={payment.validate}
+							fullWidth
+						/>
+					)}
+				</ReactInputMask>
 			</Grid>
 			<Grid item xs={6}>
-				<TextField
-					id="cvv"
-					label="CVV"
-					value={payment.validate}
-					fullWidth
+				<ReactInputMask
+					value={payment.cvv}
+					mask="999"
+					maskChar=" "
 					onChange={handleInputChange}
-				/>
+					onFocus={handleFocus}
+					onBlur={handleBlur}
+				>
+					{() => (
+						<TextField
+							id="cvv"
+							name="cvc"
+							label="CVV"
+							value={payment.cvv}
+							fullWidth
+						/>
+					)}
+				</ReactInputMask>
 			</Grid>
 			<Grid item xs={12}>
 				<TextField
