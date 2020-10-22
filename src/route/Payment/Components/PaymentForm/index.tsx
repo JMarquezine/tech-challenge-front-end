@@ -23,12 +23,15 @@ const PaymentForm: React.FC = () => {
 		}),
 	})
 
-	const [payment, setPayment] = useState<Payment>({
+	const defaultPayment = {
 		cardName: '',
 		cardNumber: '',
 		cvv: '',
 		validate: '',
-	} as Payment)
+		paymentRate: PaymentRateType.SemJuros12,
+	} as Payment
+
+	const [payment, setPayment] = useState<Payment>(defaultPayment)
 
 	const paymentSchema = React.useMemo(() => {
 		return yup.object().shape({
@@ -43,11 +46,10 @@ const PaymentForm: React.FC = () => {
 			name: yup.string().required('Insira o Nome'),
 			expiry: yup.string().required('Insira a Validade'),
 			cvc: yup.string().required('Insira o CVV do Cartão'),
-			paymentRate: yup.string().required('Insira o número de parcelas'),
 		})
 	}, [isCardNumberValid])
 
-	const { register, handleSubmit, errors } = useForm({
+	const { register, handleSubmit, errors, reset } = useForm({
 		resolver: yupResolver(paymentSchema),
 	})
 
@@ -78,8 +80,13 @@ const PaymentForm: React.FC = () => {
 		setPayment({ ...payment, paymentRate: value as PaymentRateType })
 	}
 
-	const onSubmit = handleSubmit((data) => {
-		console.log(data as Payment)
+	const onSubmit = handleSubmit(() => {
+		if (paymentStore) {
+			executePayment(paymentStore).then(() => {
+				setPayment(defaultPayment)
+				reset()
+			})
+		}
 	})
 
 	useEffect(() => {
@@ -181,13 +188,15 @@ const PaymentForm: React.FC = () => {
 						name="paymentRate"
 						label="Número de Parcelas"
 						value={payment.paymentRate}
-						inputRef={register}
 						select
 						fullWidth
 						onChange={handleSelectChange}
 					>
 						{Object.keys(PaymentRateType).map((key) => (
-							<MenuItem key={key} value={key}>
+							<MenuItem
+								key={key}
+								value={PaymentRateType[key as keyof typeof PaymentRateType]}
+							>
 								{PaymentRateType[key as keyof typeof PaymentRateType]}
 							</MenuItem>
 						))}
