@@ -11,12 +11,16 @@ import Payment from '../../../../domains/Payment'
 import * as PaymentEvents from '../../../../store/payment/PaymentEvents'
 import PaymentStore from '../../../../store/payment/PaymentStore'
 import useStyle from './style'
+import { executePayment } from '../../../../usecase/PaymentUseCase'
 
 const PaymentForm: React.FC = () => {
-	const isCardNumberValid = useStoreMap({
+	const { isCardNumberValid, paymentStore } = useStoreMap({
 		store: PaymentStore,
 		keys: [],
-		fn: (state) => state.isCardNumberValid,
+		fn: (state) => ({
+			isCardNumberValid: state.isCardNumberValid,
+			paymentStore: state.payment,
+		}),
 	})
 
 	const [payment, setPayment] = useState<Payment>({
@@ -74,7 +78,9 @@ const PaymentForm: React.FC = () => {
 		setPayment({ ...payment, paymentRate: value as PaymentRateType })
 	}
 
-	const onSubmit = handleSubmit((data) => console.log(data))
+	const onSubmit = handleSubmit((data) => {
+		console.log(data as Payment)
+	})
 
 	useEffect(() => {
 		PaymentEvents.setPayment(payment)
