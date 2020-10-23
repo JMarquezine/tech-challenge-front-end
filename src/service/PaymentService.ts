@@ -5,7 +5,7 @@ const axiosInstance = axios.create()
 
 const upsert = (payment: Payment): Promise<void> => {
 	return axiosInstance
-		.put<void>(`payment/${payment.cardName}`, {
+		.post<void>(`http://localhost:3001/payment/`, {
 			...payment,
 		})
 		.then((response) => response.data)
