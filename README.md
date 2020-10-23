@@ -1,6 +1,6 @@
 # Tech Challenge - Front-end
 
-![frontend](Resources/LojaExemplo.png)
+![frontend](resources/LojaExemplo.png)
 
 ## Before Running the React Application
 
@@ -60,7 +60,7 @@ To better experience on Visual Studio Code I recommend use these plugins below:
 * [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 * [Prettier ESLint](https://marketplace.visualstudio.com/items?itemName=rvest.vs-code-prettier-eslint)
 
-![vscodeplugins](Resources/VSCodePlugins.png)
+![vscodeplugins](resources/VSCodePlugins.png)
 
 ## Built With
 * [React Framework](https://reactjs.org/)
