@@ -1,44 +1,82 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Tech Challenge - Front-end
 
-## Available Scripts
+![frontend](Resources/LojaExemplo.png)
+
+## Before Running the React Application
+
+To install all dependencies especified on `package.json` you need to run:
+
+```yarn install```
+
+## Running the React Application Locally
 
 In the project directory, you can run:
 
-### `yarn start`
+```yarn start```
 
-Runs the app in the development mode.<br />
+It run the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
-### `yarn test`
+## Building the application
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Execute the command above to compile the application and generate a builded version.
 
-### `yarn build`
+```yarn build```
 
 Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+The Application is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Deploy with Docker
 
-### `yarn eject`
+The Structure of the Application is ready to be deployed without any commands above.
+If you want to run the Application on a container you need run: 
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```docker-compose up -d --build```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+This command will generate a build version of the Application on `8080` port and initialize a JSON-Server on `3001` port
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### JSON-Server
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+The JSON-Server uses the [`data/db.json`](data/db.json) file to read and save the information.
 
-## Learn More
+### Dockerfile
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+The [`dockerfile`](Dockerfile) is configurated with two step, the first step is to build the Application and the second step created a nginx image with the builded code.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Dockercompose
+
+The [`docker-compose.yml`](docker-compose.yml) is configurated to build the application with the [`dockerfile`](Dockerfile) on one container and initialize the json-server on another container.
+
+## Visual Studio Code Plugin`s
+
+To better experience on Visual Studio Code I recommend use these plugins below:
+
+* [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+* [Material Icon Theme](https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme)
+* [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+* [Prettier ESLint](https://marketplace.visualstudio.com/items?itemName=rvest.vs-code-prettier-eslint)
+
+![vscodeplugins](Resources/VSCodePlugins.png)
+
+## Built With
+* [React Framework](https://reactjs.org/)
+* [MaterialUI](https://material-ui.com/)
+* [Typescript](https://www.typescriptlang.org/)
+* [ESLint](https://eslint.org/)
+* [Prettier](https://prettier.io/)
+* [Axios](https://github.com/axios/axios)
+* [Effector](https://github.com/effector/effector)
+* [React Credit Cards](https://github.com/amarofashion/react-credit-cards)
+* [React Hook Form](https://react-hook-form.com/)
+* [Yup](https://github.com/jquense/yup)
+* [React Input Mask](https://github.com/sanniassin/react-input-mask)
+* [React Toastify](https://github.com/fkhadra/react-toastify)
+* [UUID](https://github.com/uuidjs/uuid)
+* [JSON-Server](https://github.com/typicode/json-server)
+* [Nginx](https://www.nginx.com/)
+* [Visual Studio Code](https://code.visualstudio.com/)
+
